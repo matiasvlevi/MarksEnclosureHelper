@@ -536,12 +536,12 @@ module hingebox(bd, part="both") {
     allow_top = (part == "both" || part == "top");
     allow_bottom = (part == "both" || part == "bottom");   
     
-    if (allow_top) hingedbox_half( bd, false ); //bottom
-    if (allow_bottom) translate( [0,dy+SPC,0] )  hingedbox_half( bd, true); // top
+    if (allow_bottom) hingedbox_half( bd, false ); //bottom
+    if (allow_top) translate( [0,dy+SPC,0] )  hingedbox_half( bd, true); // top
 
     if (VIS) { // visualized top and bottom
-        if (allow_bottom) translate( [dx,dy+SPC,dz] ) rotate([0,180,0]) %hingedbox_half( bd );    
-        if (allow_top) translate( [dx,0, dz ] ) rotate([0,180,0])  %hingedbox_half( bd, true);
+        if (allow_top) translate( [dx,dy+SPC,dz] ) rotate([0,180,0]) %hingedbox_half( bd );    
+        if (allow_bottom) translate( [dx,0, dz ] ) rotate([0,180,0])  %hingedbox_half( bd, true);
     }
 }
 
