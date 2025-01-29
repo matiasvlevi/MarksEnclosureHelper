@@ -529,13 +529,17 @@ module wartclip( bd, thick, ra=0 ) {
 // ========================= CODE ENTRY POINT 
 //  you can skip this and call hingebox_half as part of your own layout if you like
 module hingebox(bd, part="both") {
-    dx = bd[0]; dy=bd[1]; dz=bd[2];
-    // extra add if magwards or clasps...
-    SPC= (hinge_od*1.3)  + hinge_standoff + PART_SPACE;   
+    dx = bd[0]; 
+    dy = (part=="both") ? bd[1] : 0; // if only one part, don't translate it
+    dz = bd[2];
 
+    // Which parts to make
     allow_top = (part == "both" || part == "top");
     allow_bottom = (part == "both" || part == "bottom");   
     
+    // extra add if magwards or clasps...
+    SPC =  (part == "both") ? (hinge_od*1.3)  + hinge_standoff + PART_SPACE : 0;   
+
     if (allow_bottom) hingedbox_half( bd, false ); //bottom
     if (allow_top) translate( [0,dy+SPC,0] )  hingedbox_half( bd, true); // top
 
